@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{common/layout}">
+<head>
+    <title>Liste mit Handbuch Einträgen</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <h1>Book Entry List</h1>
+
+    <a th:href = "@{/bookEntry/addEntry}" class="btn btn-primary btn-sm mb-3"> Add Entry </a>
+
+    <div th:if="${!bookEntries.isEmpty()}">
+        <table border="1" class = "table table-striped table-responsive-md">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Sub Title</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="bentry : ${bookEntries}">
+                <td th:text="${bentry.title}"></td>
+                <td th:text="${bentry.subTitle}"></td>
+                <td>
+                    <a th:href="@{/bookEntry/updateEntry/{id}(id=${bentry.id})}" class="btn btn-primary">Update</a>
+                    <a th:href="@{/bookEntry/deleteEntry/{id}(id=${bentry.id})}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div th:unless="${!bookEntries.isEmpty()}">
+        <h4 class="display-4">Es gibt noch keine Einträge ...</h4>
+    </div>
+
+</div>
+</body>
+</html>
