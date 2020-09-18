@@ -1,4 +1,4 @@
-package info.diwe.handbuch;
+package info.diwe.handbuch.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
